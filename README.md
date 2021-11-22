@@ -1,2 +1,3 @@
-# chat-app
-a p2p chat app
+# game-room
+
+a trivia app that tests users and updates the leaderboard in real time.
