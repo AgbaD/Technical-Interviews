@@ -1,3 +1,3 @@
-# game-room
+# CMS
 
-a trivia app that tests users and updates the leaderboard in real time.
+UB T-I
