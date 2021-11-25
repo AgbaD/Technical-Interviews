@@ -1,0 +1,42 @@
+.nav {
+    width: 100vw;
+    margin: 3rem auto;
+}
+
+.nav .row {
+    width: 100%;
+}
+
+.nav .row .col-12 {
+    margin-bottom: 2rem;
+}
+
+.nav .row a {
+    text-decoration: None;
+    color: blue;
+    background: #ffffff;
+    border: 1px solid blue;
+    border-radius: 5px;
+    padding: 11px 13px;
+}
+
+.nav .row a:hover {
+    color: #ffffff;
+    background: blue;
+}
+
+.the-form {
+    max-width: 800px;
+    margin: auto;
+    border: 1px solid blue;
+    padding: 3rem;
+    border-radius: 5px;
+}
+
+.the-form input {
+    border-color: blue;
+}
+
+.the-form input:focus {
+    box-shadow: unset !important;
+}

@@ -9,5 +9,5 @@ class Posts(models.Model):
     content = models.TextField('content')
     private = models.BooleanField(default=True)
     pid = models.TextField('public id')
-    date_created = models.DateTimeField(auto_fill_now=True)
+    date_created = models.DateTimeField(auto_now_add=True)
 

@@ -1,3 +1,4 @@
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User, auth
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -9,6 +10,7 @@ import json
 
 
 # auth
+@csrf_exempt
 def register(request):
     if request.method == 'POST':
         firstname = request.POST['firstname']
@@ -25,16 +27,17 @@ def register(request):
             user = User.objects.create_user(username=email, first_name=firstname, last_name=lastname,
                                             email=email, password=password1)
             user.save()
-            return redirect('/user/page')
+            return redirect('/login')
     return render(request, 'register.html')
 
 
+@csrf_exempt
 def login(request):
     if request.method == 'POST':
         password = request.POST['password']
         email = request.POST['email'].lower()
 
-        user = auth.authentsicate(username=email, password=password)
+        user = auth.authenticate(username=email, password=password)
         if user:
             auth.login(request, user)
             return redirect('/dash')
@@ -62,6 +65,7 @@ def dash(request):
     return redirect('/login')
 
 
+@csrf_exempt
 def create_post(request):
     if not request.user.is_authenticated:
         messages.info(request, "User not authenticated!!")
@@ -88,6 +92,7 @@ def create_post(request):
     return render(request, 'create.html')
 
 
+@csrf_exempt
 def edit_post(request, pid: str):
     if not request.user.is_authenticated:
         messages.info(request, "User not authenticated!!")
