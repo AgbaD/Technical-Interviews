@@ -52,14 +52,14 @@ def logout(request):
 
 # resources
 def index(request):
-    posts = Posts.objects.filter(private=False)
+    posts = Posts.objects.filter(private=False)[::-1]
     return render(request, 'index.html', {'posts': posts})
 
 
 def dash(request):
     if request.user.is_authenticated:
         user = request.user
-        posts = Posts.objects.filter(user_id=user.id)
+        posts = Posts.objects.filter(user_id=user.id)[::-1]
         return render(request, 'dash.html', {'posts': posts})
     messages.info(request, "User not authenticated!!")
     return redirect('/login')
@@ -79,7 +79,10 @@ def create_post(request):
         c = content.split(" ")
         if len(c) > 255:
             messages.info(request, "You can't have more than 255 words!")
-            return redirect('/post/create', {'data': {'title': title, 'content': content}})
+            return render(request, 'create.html', {'title': title, 'content': content})
+        if Posts.objects.filter(title=title).exists():
+            messages.info(request, "Post with title already present")
+            return render(request, 'create.html', {'title': title, 'content': content})
 
         post = Posts(
             title=title,
@@ -98,7 +101,7 @@ def edit_post(request, pid: str):
         messages.info(request, "User not authenticated!!")
         return redirect('/login')
     try:
-        post = Posts.objects.filter(pid=pid)
+        post = Posts.objects.get(pid=pid)
     except Posts.DoesNotExist:
         messages.info(request, "Post not found")     # should not happen
         return redirect('/dash')
@@ -107,11 +110,10 @@ def edit_post(request, pid: str):
         messages.info(request, "You are not authorized to perform action!")
 
     if request.method == 'POST':
-        body = json.loads(request.body)
-        if 'title' in body:
-            post.title = body['title']
-        if 'content' in body:
-            post.content = body['content']
+        title = request.POST['title']
+        content = request.POST['content']
+        post.title = title
+        post.content = content
         post.save()
         return redirect('/dash')
     return render(request, 'edit.html', {'post': post})
@@ -125,7 +127,7 @@ def publish_post(request, pid: str):
         messages.info(request, "User not authenticated!!")
         return redirect('/login')
     try:
-        post = Posts.objects.filter(pid=pid)
+        post = Posts.objects.get(pid=pid)
     except Posts.DoesNotExist:
         messages.info(request, "Post not found")     # should not happen
         return redirect('/dash')
@@ -142,7 +144,7 @@ def delete_post(request, pid: str):
         messages.info(request, "User not authenticated!!")
         return redirect('/login')
     try:
-        post = Posts.objects.filter(pid=pid)
+        post = Posts.objects.get(pid=pid)
     except Posts.DoesNotExist:
         messages.info(request, "Post not found")     # should not happen
         return redirect('/dash')

@@ -4,7 +4,7 @@
 }
 
 .nav .row {
-    width: 100%;
+    margin: auto !important;
 }
 
 .nav .row .col-12 {
@@ -18,6 +18,7 @@
     border: 1px solid blue;
     border-radius: 5px;
     padding: 11px 13px;
+    margin-bottom: 1.1rem
 }
 
 .nav .row a:hover {
@@ -33,10 +34,40 @@
     border-radius: 5px;
 }
 
-.the-form input {
+.the-form input, .the-form textarea {
     border-color: blue;
 }
 
-.the-form input:focus {
+.the-form textarea {
+    height: 230px;
+}
+
+.the-form input:focus, .the-form textarea:focus {
     box-shadow: unset !important;
+}
+
+.dash {
+    max-width: 1100px;
+}
+
+.dash .posts {
+    box-shadow: 1px 3px 7px blue;
+    padding: 2rem;
+    margin-bottom: 3rem;
+}
+
+.dash .posts:nth-child(odd):hover {
+    transform: translate3d(-6px, -5px, 4px)
+}
+
+.dash .posts:nth-child(even):hover {
+    transform: translate3d(0px, -7px, 3px)
+}
+
+.dash .posts .tools a {
+    color: #ffffff;
+    background: blue;
+    padding: 5px 7px;
+    border-radius: 5px;
+    text-decoration: none;
 }

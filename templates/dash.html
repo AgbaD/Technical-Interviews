@@ -1,7 +1,7 @@
-{% extends 'an-base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}
-Landing Page
+Dashboard
 {% endblock %}
 
 {% block content %}
@@ -11,8 +11,10 @@ Landing Page
         <div class="col-md-6 col-lg-4 posts">
             <h2>{{ post.title }}</h2>
             <p>{{ post.content }}</p>
+            <p>Private: {{ post.private }}</p>
             <div class="tools">
                 <a href="{% url 'edit' post.pid %}">Edit</a>
+                <a href="{% url 'publish' post.pid %}">Publish</a>
                 <a href="{% url 'delete' post.pid %}">Delete</a>
             </div>
         </div>
