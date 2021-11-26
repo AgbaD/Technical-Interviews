@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Create Post
+{% endblock %}
+
+{% block content %}
+<form method="post" class="the-form">
+  <div class="mb-3">
+    {% if title %}
+    <input type="text" name="title" id="title" value="{{ title }}" class="form-control" placeholder="Post Title">
+    {% else %}
+    <input type="text" name="title" id="title" class="form-control" placeholder="Post Title">
+    {% endif %}
+  </div>
+  <div class="mb-3">
+    {% if content %}
+    <textarea name="content" id="content" class="form-control" placeholder="Enter Content">
+      {{ content }}
+    </textarea>
+    {% else %}
+    <textarea name="content" id="content" class="form-control" placeholder="Enter Content"></textarea>
+    {% endif %}
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}
