@@ -27,7 +27,7 @@ SECRET_KEY = '@mk@%z9zefl55qb^gl=j6kktnz!0($@+oxhdys^&n_v-f(=v*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["ub-cms.herokuapp.com",  "127.0.0.1"]
+ALLOWED_HOSTS = ["ub-cms.herokuapp.com"]
 
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
