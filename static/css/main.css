@@ -56,11 +56,7 @@
     margin-bottom: 3rem;
 }
 
-.dash .posts:nth-child(odd):hover {
-    transform: translate3d(-6px, -5px, 4px)
-}
-
-.dash .posts:nth-child(even):hover {
+.dash .posts:hover {
     transform: translate3d(0px, -7px, 3px)
 }
 

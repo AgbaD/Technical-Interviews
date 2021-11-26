@@ -14,7 +14,9 @@ Dashboard
             <p>Private: {{ post.private }}</p>
             <div class="tools">
                 <a href="{% url 'edit' post.pid %}">Edit</a>
+                {% if post.private %}
                 <a href="{% url 'publish' post.pid %}">Publish</a>
+                {% endif %}
                 <a href="{% url 'delete' post.pid %}">Delete</a>
             </div>
         </div>
